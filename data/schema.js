@@ -17,14 +17,14 @@ const schema = buildSchema(`
     }
 
     type Query {
-        product: Product
+        getProduct(id: ID!): Product
     }
 
-    type StoreInput {
+    input StoreInput {
         store: String
     }
 
-    type ProductInput {
+    input ProductInput {
         id: ID
         name: String
         description: String
