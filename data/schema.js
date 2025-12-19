@@ -13,7 +13,6 @@ const schema = buildSchema(`
     }
 
     type Store {
-        id: ID
         store: String!
     }
 

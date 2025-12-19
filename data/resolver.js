@@ -1,27 +1,20 @@
-class Product {
-    constructor (id, { name, description, price, soldout, inventory, stores}) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.soldout = soldout;
-        this.inventory = inventory;
-        this.stores = stores;
-    }
-}
-
-
-const productDatabase = {};
+import { Widgets } from "./db"
 
 
 const resolvers = {
-    getProduct: ({id}) => {
-        return new Product(id, productDatabase[id]);
+    getProduct: async ({ id }) => {
+        try {
+            return await Widgets.findById(id);
+        } catch (error) {
+            throw new Error(error);
+        }
     },
-    createProduct: ({input}) => {
-        let id = require("crypto").randomBytes(10).toString('hex');
-        productDatabase[id] = input;
-        return new Product(id, input);
+    createProduct: async ({ input }) => {
+        try {
+            return await Widgets.create(input);
+        } catch (error) {
+            throw new Error(error)
+        }
     }
 }
 
